@@ -45,9 +45,9 @@ def pil2cv(image):
     if new_image.ndim == 2:  # モノクロ
         pass
     elif new_image.shape[2] == 3:  # カラー
-        new_image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        new_image = cv2.cvtColor(new_image, cv2.COLOR_RGB2BGR)
     elif new_image.shape[2] == 4:  # 透過
-        new_image = cv2.cvtColor(image, cv2.COLOR_RGBA2BGRA)
+        new_image = cv2.cvtColor(new_image, cv2.COLOR_RGBA2BGRA)
     return new_image
 #cv2を使わずに書くなら，
 
@@ -109,6 +109,6 @@ def draw_text(img,text,pos=(10,10),color=(255,255,255),font_file="C:\Windows\Fon
 	#draw.text((10, 10), u'吾輩は猫である。', fill=(255, 0, 0), font=font)
 	#改行できる
 	#draw.text((10, 10), u'\n名前はまだ無い。', fill=(0, 0, 255), font=font)
-	draw.text(pos, text,', fill=color, font=font)
+	draw.text(pos, text, fill=color, font=font)
 	#img.save("cat_text.jpg")
-	return(pil2cv(img_img))
+	return(pil2cv(img_pil))
