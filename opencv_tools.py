@@ -1,6 +1,6 @@
-#opencv‚Å•Ö—˜‚ÈŠÖ”‚ğW‚ß‚Ä’u‚­
+#opencvã§ä¾¿åˆ©ãªé–¢æ•°ã‚’é›†ã‚ã¦ç½®ã
 
-#“ú–{Œêƒtƒ@ƒCƒ‹–¼‘Î‰
+#æ—¥æœ¬èªãƒ•ã‚¡ã‚¤ãƒ«åå¯¾å¿œ
 #https://qiita.com/SKYS/items/cbde3775e2143cad7455
 import numpy as np
 import cv2
@@ -32,83 +32,83 @@ def imwrite(filename, img, params=None):
         return False
 
 #https://qiita.com/derodero24/items/f22c22b22451609908ee
-#yPythonzPillow ? OpenCV •ÏŠ·
-#ƒOƒŒ[ƒXƒP[ƒ‹‚âƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‚Ì‰æ‘œ‚Å‚à•ÏŠ·‚Å‚«‚é‚æ‚¤‚ÉŠÖ”‰»‚µ‚Ü‚µ‚½B
+#ã€Pythonã€‘Pillow ? OpenCV å¤‰æ›
+#ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«ã‚„Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãã®ç”»åƒã§ã‚‚å¤‰æ›ã§ãã‚‹ã‚ˆã†ã«é–¢æ•°åŒ–ã—ã¾ã—ãŸã€‚
 
-#Pillow ¨ OpenCV
+#Pillow â†’ OpenCV
 import numpy as np
 import cv2
 
 def pil2cv(image):
-    ''' PILŒ^ -> OpenCVŒ^ '''
+    ''' PILå‹ -> OpenCVå‹ '''
     new_image = np.array(image)
-    if new_image.ndim == 2:  # ƒ‚ƒmƒNƒ
+    if new_image.ndim == 2:  # ãƒ¢ãƒã‚¯ãƒ­
         pass
-    elif new_image.shape[2] == 3:  # ƒJƒ‰[
+    elif new_image.shape[2] == 3:  # ã‚«ãƒ©ãƒ¼
         new_image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-    elif new_image.shape[2] == 4:  # “§‰ß
+    elif new_image.shape[2] == 4:  # é€é
         new_image = cv2.cvtColor(image, cv2.COLOR_RGBA2BGRA)
     return new_image
-#cv2‚ğg‚í‚¸‚É‘‚­‚È‚çC
+#cv2ã‚’ä½¿ã‚ãšã«æ›¸ããªã‚‰ï¼Œ
 
 import numpy as np
 
 def pil2cv_np(image):
-    ''' PILŒ^ -> OpenCVŒ^ '''
+    ''' PILå‹ -> OpenCVå‹ '''
     new_image = np.array(image)
-    if new_image.ndim == 2:  # ƒ‚ƒmƒNƒ
+    if new_image.ndim == 2:  # ãƒ¢ãƒã‚¯ãƒ­
         pass
-    elif new_image.shape[2] == 3:  # ƒJƒ‰[
+    elif new_image.shape[2] == 3:  # ã‚«ãƒ©ãƒ¼
         new_image = new_image[:, :, ::-1]
-    elif new_image.shape[2] == 4:  # “§‰ß
+    elif new_image.shape[2] == 4:  # é€é
         new_image = new_image[:, :, [2, 1, 0, 3]]
     return new_image
-#OpenCV ¨ Pillow
+#OpenCV â†’ Pillow
 from PIL import Image
 import cv2
 
 def cv2pil(image):
-    ''' OpenCVŒ^ -> PILŒ^ '''
+    ''' OpenCVå‹ -> PILå‹ '''
     new_image = image.copy()
-    if new_image.ndim == 2:  # ƒ‚ƒmƒNƒ
+    if new_image.ndim == 2:  # ãƒ¢ãƒã‚¯ãƒ­
         pass
-    elif new_image.shape[2] == 3:  # ƒJƒ‰[
+    elif new_image.shape[2] == 3:  # ã‚«ãƒ©ãƒ¼
         new_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    elif new_image.shape[2] == 4:  # “§‰ß
+    elif new_image.shape[2] == 4:  # é€é
         new_image = cv2.cvtColor(image, cv2.COLOR_BGRA2RGBA)
     new_image = Image.fromarray(new_image)
     return new_image
-#cv2‚ğg‚í‚¸‚É‘‚­‚È‚çC
+#cv2ã‚’ä½¿ã‚ãšã«æ›¸ããªã‚‰ï¼Œ
 
 from PIL import Image
 def cv2pil_np(image):
-    ''' OpenCVŒ^ -> PILŒ^ '''
+    ''' OpenCVå‹ -> PILå‹ '''
     new_image = deepcopy(image)
-    if new_image.ndim == 2:  # ƒ‚ƒmƒNƒ
+    if new_image.ndim == 2:  # ãƒ¢ãƒã‚¯ãƒ­
         pass
-    elif new_image.shape[2] == 3:  # ƒJƒ‰[
+    elif new_image.shape[2] == 3:  # ã‚«ãƒ©ãƒ¼
         new_image = new_image[:, :, ::-1]
-    elif new_image.shape[2] == 4:  # “§‰ß
+    elif new_image.shape[2] == 4:  # é€é
         new_image = new_image[:, :, [2, 1, 0, 3]]
     new_image = Image.fromarray(new_image)
     return new_image
 
-#‰æ‘œ‚É“ú–{Œê•\¦
+#ç”»åƒã«æ—¥æœ¬èªè¡¨ç¤º
 #https://www.tech-tech.xyz/drawtext.html
 from PIL import Image, ImageDraw, ImageFont
 
 def draw_text(img,text,pos=(10,10),color=(255,255,255),font_file="C:\Windows\Fonts\meiryob.ttc",font_size=27):
-	#‰æ‘œ‚Ì“Ç‚İ‚İ
+	#ç”»åƒã®èª­ã¿è¾¼ã¿
 	#img = Image.open("cat.jpg")
 	img_pil=cv2pil(img)
-	#drawƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬
+	#drawã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆ
 	draw = ImageDraw.Draw(img_pil)
-	#ƒtƒHƒ“ƒg‚Ìİ’è(ƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹‚ÌƒpƒX‚Æ•¶š‚Ì‘å‚«‚³)
+	#ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®š(ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã¨æ–‡å­—ã®å¤§ãã•)
 	font = ImageFont.truetype(font_file, font_size)
-	#•¶š‚ğ‘‚­
-	#draw.text((10, 10), u'Œá”y‚Í”L‚Å‚ ‚éB', fill=(255, 0, 0), font=font)
-	#‰üs‚Å‚«‚é
-	#draw.text((10, 10), u'\n–¼‘O‚Í‚Ü‚¾–³‚¢B', fill=(0, 0, 255), font=font)
+	#æ–‡å­—ã‚’æ›¸ã
+	#draw.text((10, 10), u'å¾è¼©ã¯çŒ«ã§ã‚ã‚‹ã€‚', fill=(255, 0, 0), font=font)
+	#æ”¹è¡Œã§ãã‚‹
+	#draw.text((10, 10), u'\nåå‰ã¯ã¾ã ç„¡ã„ã€‚', fill=(0, 0, 255), font=font)
 	draw.text(pos, text,', fill=color, font=font)
 	#img.save("cat_text.jpg")
 	return(pil2cv(img_img))
