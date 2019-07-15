@@ -131,6 +131,9 @@ def draw_text(img,text,pos=(10,10),color=(255,255,255),font_file="TanukiMagic.tt
      #img.save("cat_text.jpg")
      return(pil2cv(img_pil))
 
+
+#http://pynote.hatenablog.com/entry/matplotlib-show-cv-image
+#opecvの画像をpltplotlibで表示する
 import cv2
 import matplotlib.pyplot as plt
 def imshow(img):
@@ -138,3 +141,5 @@ def imshow(img):
         plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
     elif img.ndim == 2:  # グレースケール画像の場合
         plt.imshow(img, cmap=plt.cm.gray)
+#plt.imshowについては以下が参考になる
+#http://pynote.hatenablog.com/entry/matplotlib-imshow
