@@ -4,32 +4,49 @@
 #https://qiita.com/SKYS/items/cbde3775e2143cad7455
 import numpy as np
 import cv2
+import os
 def imread(filename, flags=cv2.IMREAD_COLOR, dtype=np.uint8):
-    try:
-        n = np.fromfile(filename, dtype)
-        img = cv2.imdecode(n, flags)
-        return img
-    except Exception as e:
-        print(e)
-        return None
+    if os.name is 'nt':
+         try:
+             n = np.fromfile(filename, dtype)
+             img = cv2.imdecode(n, flags)
+             return img
+         except Exception as e:
+             print(e)
+             return None
+    else:
+         try:
+             img = cv2.imread(filename, flags)
+             return img
+         except Exception as e:
+             print(e)
+             return None
 
 import numpy as np
 import cv2
 import os
 def imwrite(filename, img, params=None):
-    try:
-        ext = os.path.splitext(filename)[1]
-        result, n = cv2.imencode(ext, img, params)
-
-        if result:
-            with open(filename, mode='w+b') as f:
-                n.tofile(f)
-            return True
-        else:
-            return False
-    except Exception as e:
-        print(e)
-        return False
+    if os.name is 'nt':
+         try:
+             ext = os.path.splitext(filename)[1]
+             result, n = cv2.imencode(ext, img, params)
+     
+             if result:
+                 with open(filename, mode='w+b') as f:
+                     n.tofile(f)
+                 return True
+             else:
+                 return False
+         except Exception as e:
+             print(e)
+             return False
+    else:
+         try:
+             img = cv2.imwrite(filename, img,params)
+             return img
+         except Exception as e:
+             print(e)
+             return None
 
 #https://qiita.com/derodero24/items/f22c22b22451609908ee
 #【Python】Pillow ? OpenCV 変換
@@ -99,17 +116,25 @@ from PIL import Image, ImageDraw, ImageFont
 
 #def draw_text(img,text,pos=(10,10),color=(255,255,255),font_file="C:\Windows\Fonts\meiryob.ttc",font_size=27):
 def draw_text(img,text,pos=(10,10),color=(255,255,255),font_file="TanukiMagic.ttf",font_size=27):
-	#画像の読み込み
-	#img = Image.open("cat.jpg")
-	img_pil=cv2pil(img)
-	#drawインスタンスを生成
-	draw = ImageDraw.Draw(img_pil)
-	#フォントの設定(フォントファイルのパスと文字の大きさ)
-	font = ImageFont.truetype(font_file, font_size)
-	#文字を書く
-	#draw.text((10, 10), u'吾輩は猫である。', fill=(255, 0, 0), font=font)
-	#改行できる
-	#draw.text((10, 10), u'\n名前はまだ無い。', fill=(0, 0, 255), font=font)
-	draw.text(pos, text, fill=color, font=font)
-	#img.save("cat_text.jpg")
-	return(pil2cv(img_pil))
+     #画像の読み込み
+     #img = Image.open("cat.jpg")
+     img_pil=cv2pil(img)
+     #drawインスタンスを生成
+     draw = ImageDraw.Draw(img_pil)
+     #フォントの設定(フォントファイルのパスと文字の大きさ)
+     font = ImageFont.truetype(font_file, font_size)
+     #文字を書く
+     #draw.text((10, 10), u'吾輩は猫である。', fill=(255, 0, 0), font=font)
+     #改行できる
+     #draw.text((10, 10), u'\n名前はまだ無い。', fill=(0, 0, 255), font=font)
+     draw.text(pos, text, fill=color, font=font)
+     #img.save("cat_text.jpg")
+     return(pil2cv(img_pil))
+
+import cv2
+import matplotlib.pyplot as plt
+def imshow(img):
+    if img.ndim == 3:  # カラー画像の場合
+        plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    elif img.ndim == 2:  # グレースケール画像の場合
+        plt.imshow(img, cmap=plt.cm.gray)
