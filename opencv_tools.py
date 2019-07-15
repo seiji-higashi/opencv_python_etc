@@ -97,7 +97,8 @@ def cv2pil_np(image):
 #https://www.tech-tech.xyz/drawtext.html
 from PIL import Image, ImageDraw, ImageFont
 
-def draw_text(img,text,pos=(10,10),color=(255,255,255),font_file="C:\Windows\Fonts\meiryob.ttc",font_size=27):
+#def draw_text(img,text,pos=(10,10),color=(255,255,255),font_file="C:\Windows\Fonts\meiryob.ttc",font_size=27):
+def draw_text(img,text,pos=(10,10),color=(255,255,255),font_file="TanukiMagic.ttf",font_size=27):
 	#画像の読み込み
 	#img = Image.open("cat.jpg")
 	img_pil=cv2pil(img)
